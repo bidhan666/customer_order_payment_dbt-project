@@ -1,0 +1,28 @@
+version: 2
+
+models:
+  - name: jaffle_shop_customers
+    columns:
+      - name: id
+        tests:
+          - unique
+          - not_null
+  - name: jaffle_shop_orders
+    columns:
+      - name: id
+        tests:
+          - not_null
+      - name: order_status
+        tests:
+          - accepted_values:
+              values:
+                - completed
+                - shipped
+                - returned
+                - return_pending
+                - placed
+      - name: user_id
+        tests:
+          - relationships:
+              field: id
+              to: ref('jaffle_shop_customers')
