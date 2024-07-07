@@ -1,0 +1,34 @@
+version: 2
+
+models:
+  - name: jaffle_shop_customers
+    description: one customer per row
+    columns:
+      - name: id
+        description: primary key
+        tests:
+          - unique
+          - not_null
+  - name: jaffle_shop_orders
+    description: one order per row
+    columns:
+      - name: id
+        description: primary key
+        tests:
+          - not_null
+      - name: order_status
+        description: "{{doc('order_status')}}"
+        tests:
+          - accepted_values:
+              values:
+                - completed
+                - shipped
+                - returned
+                - return_pending
+                - placed
+      - name: user_id
+        description: finding the relationship between order and customers
+        tests:
+          - relationships:
+              field: id
+              to: ref('jaffle_shop_customers')
