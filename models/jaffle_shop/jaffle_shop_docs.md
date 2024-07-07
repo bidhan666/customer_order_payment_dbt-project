@@ -1,4 +1,4 @@
-{% docs order_staus %}
+{% docs order_status %}
 
 | status         | definition                                       |
 |----------------|--------------------------------------------------|
